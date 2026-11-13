@@ -22,6 +22,8 @@
   <ItemGroup>
     <ProjectReference Include="..\NexusERP.Domain\NexusERP.Domain.csproj" />
     <ProjectReference Include="..\NexusERP.DataAccess\NexusERP.DataAccess.csproj" />
+    <ProjectReference Include="..\NexusERP.Application\NexusERP.Application.csproj" />
+    <ProjectReference Include="..\NexusERP.API\NexusERP.API.csproj" />
   </ItemGroup>
 
 </Project>
