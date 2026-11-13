@@ -1,0 +1,15 @@
+# Local environment files
+.env
+.env.*
+!.env.example
+
+# Local dev secrets
+secrets/
+*.pfx
+*.pem
+*.key
+
+# OS and IDE
+.vs/
+bin/
+obj/
