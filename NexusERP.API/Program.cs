@@ -1,12 +1,29 @@
+using FluentValidation;
+using NexusERP.API;
+using NexusERP.API.Infrastructure.ExceptionHandling;
+using NexusERP.Application.Features.Customers.Abstractions;
+using NexusERP.Application.Features.Customers.DTOs;
+using NexusERP.Application.Features.Customers.Services;
+using NexusERP.Application.Features.Customers.Validators;
 using NexusERP.DataAccess;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddProblemDetails();
+builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
 builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 builder.Services.AddDataAccess(builder.Configuration);
+builder.Services.AddScoped<ICustomerService, CustomerService>();
+builder.Services.AddScoped<IValidator<CustomerCreateRequest>, CustomerCreateRequestValidator>();
+builder.Services.AddScoped<IValidator<CustomerUpdateRequest>, CustomerUpdateRequestValidator>();
 
 var app = builder.Build();
+
+app.UseExceptionHandler(new ExceptionHandlerOptions
+{
+    AllowStatusCode404Response = true
+});
 
 if (app.Environment.IsDevelopment())
 {

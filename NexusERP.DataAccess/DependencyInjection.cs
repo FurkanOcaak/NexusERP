@@ -2,8 +2,10 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using NexusERP.Application.Features.Customers.Abstractions;
 using NexusERP.DataAccess.Interceptors;
 using NexusERP.DataAccess.Persistence;
+using NexusERP.DataAccess.Repositories;
 
 namespace NexusERP.DataAccess;
 
@@ -33,6 +35,8 @@ public static class DependencyInjection
                     serviceProvider.GetRequiredService<
                         AuditSaveChangesInterceptor>());
             });
+
+        services.AddScoped<ICustomerRepository, CustomerRepository>();
 
         return services;
     }
